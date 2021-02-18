@@ -23,8 +23,8 @@ function show_time(t) {
 	return out;
 }
 
-var superscripts = "â°Â¹Â²Â³â´âµâ¶â·â¸â¹";
-var subscripts = "â‚€â‚â‚‚â‚ƒâ‚„â‚…â‚†â‚‡â‚ˆâ‚‰";
+var superscripts = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+var subscripts = "₀₁₂₃₄₅₆₇₈₉";
 
 function show_script(n,scripts) {
 	if(n==0) {
@@ -138,7 +138,7 @@ var easy_multiply = {
 	test: function(n,steps,last_move){return n<20 && last_move!=divide},
 	fn: function(n) {
 		var f = randrange(2,10);
-		return [{kind: 'multiply',text: 'Ã—'+f, n:n*f}];
+		return [{kind: 'multiply',text: '×'+f, n:n*f}];
 	}
 }
 
@@ -146,7 +146,7 @@ var multiply = {
 	test: function(n,steps,last_move){return n<100 && last_move!=divide},
 	fn: function(n) {
 		var f = randrange(2,Math.min(10,Math.floor(200/n)));
-		return [{kind: 'multiply',text: 'Ã—'+f, n:n*f}];
+		return [{kind: 'multiply',text: '×'+f, n:n*f}];
 	}
 }
 
@@ -165,7 +165,7 @@ var easy_divide = {
 				n -= m;
 			}
 		}
-		o.push({kind: 'divide', text: 'Ã·'+d, n: n/d});
+		o.push({kind: 'divide', text: '÷'+d, n: n/d});
 		return o;
 	}
 }
@@ -185,7 +185,7 @@ var divide = {
 				n -= m;
 			}
 		}
-		o.push({kind: 'divide', text: 'Ã·'+d, n: n/d});
+		o.push({kind: 'divide', text: '÷'+d, n: n/d});
 		return o;
 	}
 }
@@ -211,7 +211,7 @@ var fraction = {
 		i /= g;
 		d /= g;
 
-		o.push({kind: 'fraction', text: 'Ã—'+show_fraction(i,d), label: 'Ã—'+i+' / '+d, n: n*i/d});
+		o.push({kind: 'fraction', text: '×'+show_fraction(i,d), label: '×'+i+' / '+d, n: n*i/d});
 		return o;
 	}
 }
@@ -220,7 +220,7 @@ var ten_percent = {
 	test: function(n){return n%10==0},
 	fn: function(n) {
 		var i = randrange(1,10);
-		return [{kind: 'percent', text: 'Ã—'+(i*10)+'%', n: n*i/10}];
+		return [{kind: 'percent', text: '×'+(i*10)+'%', n: n*i/10}];
 	}
 }
 
@@ -259,7 +259,7 @@ var times = [
 	[12,function(i){return 5*i}, function(i,s) {return s+' seconds'}],
 	[5, function(i){return 10*i+60}, function(i,s) {return s+' seconds'}],
 	[9, function(i){return 60*(i+1)}, function(i,s) {return (i+1)+' minutes'}],
-	[1, function(i){return Infinity}, function() {return 'âˆž'}]
+	[1, function(i){return Infinity}, function() {return '∞'}]
 ];
 
 function invert_time(s) {
@@ -473,7 +473,7 @@ Game.prototype = {
 
 	summarise: function(difficulty) {
 		var score = this.scores[difficulty];
-		var summary_element = $('<li class="summary"><span class="score">'+show_fraction(score.correct,score.attempted)+'</span> '+difficulty+' puzzles solved'+(score.streak>0 ? ' <span class="streak">(streak '+score.streak+')</span>':'')+'. Average time <span class="average_time">'+(score.average_time!==null ? show_time(score.average_time) : 'âˆž')+'</span>');
+		var summary_element = $('<li class="summary"><span class="score">'+show_fraction(score.correct,score.attempted)+'</span> '+difficulty+' puzzles solved'+(score.streak>0 ? ' <span class="streak">(streak '+score.streak+')</span>':'')+'. Average time <span class="average_time">'+(score.average_time!==null ? show_time(score.average_time) : '∞')+'</span>');
 		$('#challenges').append(summary_element);
 	},
 
