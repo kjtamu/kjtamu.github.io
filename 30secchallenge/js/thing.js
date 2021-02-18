@@ -259,7 +259,7 @@ var times = [
 	[12,function(i){return 5*i}, function(i,s) {return s+' seconds'}],
 	[5, function(i){return 10*i+60}, function(i,s) {return s+' seconds'}],
 	[9, function(i){return 60*(i+1)}, function(i,s) {return (i+1)+' minutes'}],
-	[1, function(i){return Infinity}, function() {return 'âˆž'}]
+	[1, function(i){return Infinity}, function() {return '∞'}]
 ];
 
 function invert_time(s) {
@@ -473,7 +473,7 @@ Game.prototype = {
 
 	summarise: function(difficulty) {
 		var score = this.scores[difficulty];
-		var summary_element = $('<li class="summary"><span class="score">'+show_fraction(score.correct,score.attempted)+'</span> '+difficulty+' puzzles solved'+(score.streak>0 ? ' <span class="streak">(streak '+score.streak+')</span>':'')+'. Average time <span class="average_time">'+(score.average_time!==null ? show_time(score.average_time) : 'âˆž')+'</span>');
+		var summary_element = $('<li class="summary"><span class="score">'+show_fraction(score.correct,score.attempted)+'</span> '+difficulty+' puzzles solved'+(score.streak>0 ? ' <span class="streak">(streak '+score.streak+')</span>':'')+'. Average time <span class="average_time">'+(score.average_time!==null ? show_time(score.average_time) : '∞')+'</span>');
 		$('#challenges').append(summary_element);
 	},
 
